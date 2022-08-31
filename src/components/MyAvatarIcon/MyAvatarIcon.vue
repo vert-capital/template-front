@@ -1,0 +1,26 @@
+<template>
+  <AvatarIcon :size="size" :full-name="fullName" :initial-letter="initialLetter" />
+</template>
+
+<script lang="ts">
+import { ref, defineComponent } from 'vue';
+import AvatarIcon from '@/components/AvatarIcon/AvatarIcon.vue';
+
+export default defineComponent({
+  name: 'MyAvatarIcon',
+  components: { AvatarIcon },
+  props: {
+    size: { type: String, default: 'medium' },
+    fullName: { type: String, default: '' }
+  },
+  setup() {
+    const initialLetter = ref('NS');
+    const avatar = ref('');
+
+    return {
+      initialLetter,
+      avatar
+    };
+  }
+});
+</script>
