@@ -1,13 +1,13 @@
 ARG STAGE
 
 # build stage
-FROM node:14.19.3-alpine AS build_stage
+FROM node:14.17-alpine AS build_stage
 WORKDIR /app
 COPY package*.json ./
 COPY yarn.lock ./
 RUN yarn --ignore-engines
 COPY . .
-RUN yarn run build:stg
+RUN yarn run build:hml
 
 # copy files and nginx conf
 FROM nginx:stable-alpine AS publish_site
