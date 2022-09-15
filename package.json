@@ -2,8 +2,8 @@
   "name": "@vert-capital/template-front",
   "version": "v1.0.0",
   "scripts": {
-    "dev": "vite --mode development --port 8080",
-    "dev-st": "vite --mode staging --port 8080",
+    "dev": "vite --mode development --port 80 --host 0.0.0.0",
+    "dev-st": "vite --mode staging --port 80",
     "build:ci": "vite build --mode ci",
     "build:stg": "vite build --mode staging",
     "build:prd": "vite build --mode production",

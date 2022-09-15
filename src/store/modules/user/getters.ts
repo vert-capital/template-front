@@ -1,6 +1,6 @@
 import type { IUserInfo, IUserState } from './types';
 
 export default {
-  isLogged: (state: IUserState): boolean => state.isLogged,
+  isLogged: (): boolean => localStorage.getItem('isLogged') === 'logado',
   getInfo: (state: IUserState): IUserInfo => state.info
 };
