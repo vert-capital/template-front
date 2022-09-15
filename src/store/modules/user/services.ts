@@ -1,8 +1,11 @@
 import api from '@/common/axios';
 
+export const getUserInfo = () => api.get('/user/me/ ');
+
 export const authUrl = () => '/accounts/login';
 
-//CHANGE: insert route to valid token
-export const validToken = (token: string): any => { return { 'token': 'true' } };
+export const validToken = (token: string) => api.post('/token/verify/', { token: token });
 
-export const logoutApplication = () => api.get(`/api/cas/logout/`);
+export const getApplications = () => api.get(`/aplicacoes/`);
+
+export const logoutApplication = () => api.get(`/cas/logout/`);
