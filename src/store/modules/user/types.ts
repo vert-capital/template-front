@@ -7,6 +7,7 @@ export interface IUserState {
   token: string | null;
   refresh_token: string | null;
   info: IUserInfo;
+  invalidToken: boolean;
 }
 export interface IUserInfo {
   email: string;

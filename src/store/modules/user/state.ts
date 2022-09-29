@@ -5,5 +5,6 @@ export default {
   isLoading: false,
   token: null,
   refresh_token: null,
-  info: {} as IUserInfo
+  info: {} as IUserInfo,
+  invalidToken: false
 };
