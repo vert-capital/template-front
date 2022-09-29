@@ -1,6 +1,5 @@
 import AvatarIcon from './AvatarIcon/AvatarIcon.vue';
 import VdsButton from './Button/Button.vue';
-import Comments from './Comments/Comments.vue';
 import Content from './Content/VContent.vue';
 import Footer from './Footer/VFooter.vue';
 import VCheck from './Input/VCheck.vue';
@@ -18,7 +17,6 @@ import TopNav from './TopNav/TopNav.vue';
 export {
   AvatarIcon,
   VdsButton,
-  Comments,
   Content,
   Footer,
   VCheck,

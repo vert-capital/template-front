@@ -1,33 +1,64 @@
-import { defineComponent, ref } from 'vue';
-import { useStore } from 'vuex';
+import { defineComponent, reactive, ref } from 'vue';
 import VdsButton from '@/components/Button/Button.vue';
 import { mdiPlus } from '@mdi/js';
 import VdsPagination from '@/components/Pagination/Pagination.vue';
 import VContent from '@/components/Content/VContent.vue';
 import { Search } from '@element-plus/icons-vue';
+import { useStore } from 'vuex';
+import VFormFilter from '@/pages/Home/form/VFormFilter.vue';
 
 export default defineComponent({
   components: {
     VdsButton,
     VdsPagination,
     VContent,
+    VFormFilter
   },
   setup() {
-    const pagination = ref({ page: 1, page_size: 5 });
     const store = useStore();
+    const pagination = ref({ page: 1, page_size: 5 });
     const isOpenModalAdd = ref(false);
-    const tableData = ref([{ id: 1 }]);
+    const tableData = ref([
+      { id: 1, name: 'name 1' },
+      { id: 2, name: 'name 2' }
+    ]);
     const isLoading = ref(false);
-    const paginationCount = ref(0);
+    const paginationCount = ref(1);
+
+    const formDataFilters = reactive({});
+    const dataSearch = reactive({});
+    const activeSort = ref('');
 
     function togglModalAdd() {
       isOpenModalAdd.value = !isOpenModalAdd.value;
     }
 
-    function onChangePagination(data: any) {
+    const fetchDomain = (params): Promise<void> =>
+      store.dispatch('example/fetchDomain', { ...params, ...formDataFilters });
+
+    const onChangePagination = async (data: any) => {
       pagination.value.page = data.page;
       pagination.value.page_size = data.page_size;
-    }
+      await fetchDomain(pagination.value);
+    };
+
+    const handleApplyFilters = async () => {
+      await store.dispatch('example/fetchDomain', {
+        page: pagination.value.page,
+        page_size: pagination.value.page_size,
+        ...formDataFilters,
+        ...dataSearch
+      });
+    };
+
+    const handleSortChange = ({ column, prop, order }) => {
+      activeSort.value = order == 'descending' ? '-' + prop : prop;
+      fetchDomain({
+        page: pagination.value.page,
+        page_size: pagination.value.page_size,
+        ordering: activeSort.value
+      });
+    };
 
     return {
       pagination,
@@ -38,7 +69,11 @@ export default defineComponent({
       onChangePagination,
       tableData,
       isLoading,
-      paginationCount
+      paginationCount,
+      formDataFilters,
+      dataSearch,
+      handleApplyFilters,
+      handleSortChange
     };
   }
 });

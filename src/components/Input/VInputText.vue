@@ -44,6 +44,11 @@ export default {
       margin-left: 4px;
     }
   }
+  .el-form-item__label {
+    height: auto;
+    line-height: 13px;
+    margin-bottom: 0.25rem;
+  }
   .el-input__wrapper.is-focus,
   .el-textarea__inner:focus {
     @extend %input-focus;

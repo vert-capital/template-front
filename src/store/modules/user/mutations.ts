@@ -3,6 +3,7 @@ import type { IUserState, IUserInfo } from './types';
 export default {
   setIsLogged(state: IUserState, isLogged: boolean): void {
     state.isLogged = isLogged;
+    isLogged ? localStorage.setItem('isLogged', 'logado') : localStorage.removeItem('isLogged');
   },
   setIsLoading(state: IUserState, isLoading: boolean): void {
     state.isLoading = isLoading;
@@ -10,7 +11,6 @@ export default {
   setTokens(state: IUserState): void {
     state.token = String(localStorage.getItem('token'));
     state.refresh_token = String(localStorage.getItem('refresh_token'));
-    localStorage.setItem('isLogged', 'logado');
   },
   setClearTokens(state: IUserState): void {
     state.token = null;
@@ -21,5 +21,8 @@ export default {
   },
   setUserInfo(state: IUserState, info: IUserInfo): void {
     state.info = info;
+  },
+  setInvalidToken(state: IUserState, invalidToken: boolean): void {
+    state.invalidToken = invalidToken;
   }
 };

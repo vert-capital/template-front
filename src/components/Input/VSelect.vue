@@ -28,8 +28,8 @@
             <el-option
               v-for="(item, index_options) in (options as any)"
               :key="index_options"
-              :label="item[option_label]"
-              :value="String(item[option_value])"
+              :label="item[optionLabel]"
+              :value="item[optionValue]"
             >
             </el-option>
           </slot>
@@ -49,8 +49,8 @@ export default defineComponent({
     multi: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
     options: { type: Array, default: (): any => [] },
-    option_value: { type: String, default: 'id' },
-    option_label: { type: String, default: 'name' },
+    optionValue: { type: String, default: 'id' },
+    optionLabel: { type: String, default: 'name' },
     size: { type: String, default: '' },
     idName: { type: String, default: '' },
     opcional: { type: Boolean, default: false }
@@ -91,6 +91,11 @@ export default defineComponent({
   .el-input.is-focus {
     border-radius: 4px;
     @extend %input-focus;
+  }
+  .el-form-item__label {
+    height: auto;
+    line-height: 13px;
+    margin-bottom: 0.25rem;
   }
 }
 .v-form-opcional .el-form-item.v-form-item:not(.is-required) .el-form-item__label {

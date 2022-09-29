@@ -1,35 +1,38 @@
 <template>
-  <div></div>
+  <h1 v-if="!isInvalidToken">...Aguarde</h1>
+  <label v-else>
+    Seu login não é válido, para voltar para página de login click
+    <a :href="urlLogin"><strong>AQUI</strong></a>
+  </label>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
+import { computed, onMounted } from 'vue';
 import store from '@/store';
-import router from '@/router';
-import config from '@/common/config';
+import { useRoute, useRouter } from 'vue-router';
 
-export default defineComponent({
-  name: 'Auth',
-  created() {
-    this.setToken();
+const isInvalidToken = computed(() => store.getters['user/isInvalidToken']);
+const urlLogin = import.meta.env.VITE_URL_LOGIN_SSO;
 
-    if (store.getters['user/isLogged']) {
-      router.push('/');
-    } else if (localStorage.getItem('token')) {
-      store.dispatch('user/login');
-    } else {
-      window.location.href = String(config.ssoUrl);
+const route = useRoute();
+const router = useRouter();
+
+const setToken = async () => {
+  const token = String(route.params.token);
+  const refreshToken = String(route.params.refreshToken);
+  if (token && refreshToken && !store.getters['user/isInvalidToken']) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('refresh_token', refreshToken);
+    if (!store.getters['user/isLogged'] && !store.getters['user/isInvalidToken']) {
+      await store.dispatch('user/login');
     }
-  },
-  methods: {
-    setToken() {
-      const token = String(this.$route.params.token);
-      const refreshToken = String(this.$route.params.refreshToken);
+  }
+};
 
-      if (token && refreshToken) {
-        localStorage.setItem('token', token);
-        localStorage.setItem('refresh_token', refreshToken);
-      }
-    }
+onMounted(() => {
+  if (store.getters['user/isLogged']) {
+    router.push('/');
+  } else {
+    setToken();
   }
 });
 </script>

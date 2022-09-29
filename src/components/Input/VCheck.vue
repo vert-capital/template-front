@@ -8,6 +8,7 @@
       <el-form-item
         :label="label"
         class="v-form-item"
+        :prop="idName"
         :class="[{ 'v-form-opcional': opcional }, `v-check-${size}`]"
       >
         <slot></slot>
@@ -23,6 +24,7 @@ export default {
     label: { type: String, default: '' },
     size: { type: String, default: 'md' },
     opcional: { type: Boolean, default: false },
+    idName: { type: String, default: '' },
     loading: { type: Boolean, default: false }
   }
 };

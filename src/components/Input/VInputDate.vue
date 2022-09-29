@@ -52,6 +52,9 @@ export default {
   }
   .el-form-item__label {
     justify-content: flex-start;
+    height: auto;
+    line-height: 13px;
+    margin-bottom: 0.25rem;
   }
   &.is-required:not(.is-no-asterisk) > .el-form-item__label {
     &::before {
