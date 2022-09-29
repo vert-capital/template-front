@@ -28,7 +28,6 @@
 
 <script lang="ts">
 import { mdiCloudUpload } from '@mdi/js';
-import { defineComponent } from 'vue';
 
 export enum ESizeIcon {
   small = 24,
@@ -36,12 +35,12 @@ export enum ESizeIcon {
   large = 45
 }
 
-export default defineComponent({
+export default {
   name: 'VUpload',
   props: {
-    label: { type: String, default: '' },
+    label: { type: String, required: true, default: '' },
     size: { type: String, default: 'medium' },
-    idName: { type: String, required: true },
+    idName: { type: String, required: false },
     opcional: { type: Boolean, default: false },
     loading: { type: Boolean, default: false }
   },
@@ -52,10 +51,10 @@ export default defineComponent({
   },
   computed: {
     setSizeIcon(): number {
-      return ESizeIcon[this.size as keyof typeof ESizeIcon];
+      return ESizeIcon[this.size];
     }
   }
-});
+};
 </script>
 
 <style lang="scss">
@@ -162,6 +161,12 @@ export default defineComponent({
   }
   &:not(.is-required).v-form-opcional .el-form-item__label {
     @extend %input-opcional;
+  }
+  .el-form-item__label {
+    justify-content: flex-start;
+    height: auto;
+    line-height: 13px;
+    margin-bottom: 0.25rem;
   }
 }
 .v-form-opcional .el-form-item.v-form-item:not(.is-required) .el-form-item__label {
