@@ -4,15 +4,15 @@
     <div class="v-body">
       <div>
         <top-nav v-model="isCollapse"></top-nav>
-        <el-scrollbar max-height="calc(100vh - 60px - 60px)">
-          <div class="v-main-content">
+        <div class="v-main" :class="{ 'v-main--closed': isCollapse }">
+          <div class="v-main--content">
             <slot>
               <router-view />
             </slot>
           </div>
-        </el-scrollbar>
+          <v-footer />
+        </div>
       </div>
-      <v-footer />
     </div>
   </el-container>
   <div class="v-basepage"></div>
@@ -78,7 +78,21 @@ export default defineComponent({
   flex-direction: column;
 }
 
-.v-main-content {
-  padding: 2rem;
+.v-main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  padding-top: 60px;
+  padding-left: 208px;
+  background-color: #f2f2f2;
+  &--closed {
+    padding-left: calc(var(--el-menu-icon-width) + var(--el-menu-base-level-padding) * 2);
+  }
+  &--content {
+    padding: 2rem;
+  }
 }
 </style>

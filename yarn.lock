@@ -537,10 +537,10 @@
     "@typescript-eslint/types" "5.36.1"
     eslint-visitor-keys "^3.3.0"
 
-"@vert-frame-core/design-system@latest":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@vert-frame-core/design-system/-/design-system-0.2.1.tgz#8a23e46e53a7bdea6b0b862627ed0d72dcca15f9"
-  integrity sha512-0MxHx9dSbL7YGfbWx0ieFWPt13OlwR77iALpTzyMGEqgNDTUF45syE7EYow13N5yF21sYS80EM5/T5z8BgXm+g==
+"@vert-frame-core/design-system@^0.3.1":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@vert-frame-core/design-system/-/design-system-0.3.2.tgz#fc1f7398b98e93365a8ec60cfc49af179f71f65f"
+  integrity sha512-neqnb6afhwPTq1hzpMuPCBatK2rmLj7ZInIgYNW1QLaQWMfW6FNNqWFK/hRVbWF6aOWOqX8i9YZmzkgQydC7Fg==
   dependencies:
     vue-demi "^0.12.1"
 

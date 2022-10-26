@@ -1,5 +1,5 @@
 <template>
-  <div class="v-topbar">
+  <div class="v-topbar" :class="{ 'v-topbar--closed': isCollapse }">
     <el-tooltip content="Menu" :show-after="500">
       <SvgIcon
         class="v-topbar--icon"
@@ -126,7 +126,15 @@ export default defineComponent({
   justify-content: space-between;
   top: 0;
   box-sizing: border-box;
-
+  position: fixed;
+  right: 0;
+  transition: all 0.3s ease;
+  width: calc(100% - 209px);
+  &--closed {
+    width: calc(
+      100% - 1px - calc(var(--el-menu-icon-width) + var(--el-menu-base-level-padding) * 2)
+    );
+  }
   &--icon {
     @extend %transition-link;
     color: $neutral-color-low-light;

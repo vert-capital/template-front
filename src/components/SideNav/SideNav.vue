@@ -61,13 +61,14 @@ export default defineComponent({
 </script>
 <style lang="scss">
 .v-sidenav {
-  height: 500px;
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  bottom: 0;
   transition: all 0.3s ease;
   box-shadow: 1px 0 3px 0 #0000001a;
   background-color: $neutral-color-hight-pure;
   transition: all 0.3s ease;
-  height: auto;
-
   &--collapse {
     max-width: calc(var(--el-menu-icon-width) + var(--el-menu-base-level-padding) * 2);
   }
@@ -80,7 +81,7 @@ export default defineComponent({
     height: 3.75rem;
     box-sizing: border-box;
     width: auto;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -88,8 +89,9 @@ export default defineComponent({
 
     > a > img {
       vertical-align: middle;
-      height: 1.5rem;
-      width: auto;
+      max-height: 2.25rem;
+      width: 100%;
+      transition: all 0.3s ease-in-out;
       max-width: 13rem;
     }
   }
