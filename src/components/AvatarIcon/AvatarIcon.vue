@@ -1,9 +1,10 @@
 <template>
-  <el-tooltip :content="fullName">
+  <el-tooltip :content="fullName" :show-after="500">
     <a href="#" class="v-avatar" :class="setSizeClass" @click.prevent="$emit('click')">
-      <div class="user">
+      <img v-if="imageUrl != ''" :src="imageUrl" :alt="setInitialLetter" />
+      <div v-else class="user">
         <span class="user__initial_letters">
-          {{ initialLetter }}
+          {{ setInitialLetter }}
         </span>
       </div>
     </a>
@@ -27,12 +28,20 @@ export default defineComponent({
       validator: (item: string) => Object.keys(EAvatarSize).includes(item)
     },
     fullName: { type: String, default: '' },
-    initialLetter: { type: String, default: '' }
+    imageUrl: {
+      type: String,
+      default: ''
+    }
   },
   emits: ['click'],
   computed: {
     setSizeClass(): string {
       return EAvatarSize[this.size as keyof typeof EAvatarSize];
+    },
+    setInitialLetter(): string {
+      const r = /\b[a-zA-Z]/g;
+      const result = this.fullName.match(r);
+      return result ? `${result[0] + result[1]}` : '';
     }
   }
 });
@@ -40,14 +49,18 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @mixin base-avatar($size) {
-  display: inline-block;
+  display: flex;
   width: $size;
   height: $size;
   max-width: $size;
   max-height: $size;
   border-radius: 50%;
   background-color: $neutral-color-low-medium;
-
+  img {
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+  }
   @if $size <=35 {
     border: 4px solid $neutral-color-hight-light;
   } @else {
@@ -90,7 +103,6 @@ export default defineComponent({
 .v-avatar {
   position: relative;
   text-decoration: none;
-
   // reponsavel pelo show e hiddem do tooltip
   .v-tooltip {
     display: none;

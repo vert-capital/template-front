@@ -1,5 +1,5 @@
 <template>
-  <AvatarIcon :size="size" :full-name="fullName" :initial-letter="initialLetter" />
+  <AvatarIcon :size="size" :full-name="fullName" :image-url="avatarUrl" />
 </template>
 
 <script lang="ts">
@@ -11,16 +11,13 @@ export default defineComponent({
   components: { AvatarIcon },
   props: {
     size: { type: String, default: 'medium' },
-    fullName: { type: String, default: '' }
+    fullName: { type: String, default: '' },
+    avatarUrl: { type: String, default: '' }
   },
   setup() {
-    const initialLetter = ref('NS');
     const avatar = ref('');
 
-    return {
-      initialLetter,
-      avatar
-    };
+    return { avatar };
   }
 });
 </script>

@@ -2,7 +2,7 @@
   <v-pagination
     :count="count"
     :size-default="sizeDefault"
-    @onChangePagination="onHandleChange"
+    @on-change-pagination="onHandleChange"
   ></v-pagination>
 </template>
 <script lang="ts">
@@ -17,7 +17,7 @@ export default defineComponent({
   props: {
     count: {
       type: Number,
-      default: 0
+      required: true
     },
     sizeDefault: {
       type: Number,
@@ -25,7 +25,9 @@ export default defineComponent({
     },
     onHandleChange: {
       type: Function,
-      default: () => {}
+      default: (): any => {
+        return;
+      }
     }
   }
 });
