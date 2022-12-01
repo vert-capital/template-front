@@ -7,7 +7,7 @@ import store from './store';
 import axios from './common/axios';
 import VueAxios from 'vue-axios';
 import locale from 'element-plus/lib/locale/lang/pt-br';
-import '@vert-frame-core/design-system/dist/style.css';
+import '@vert-capital/design-system/dist/style.css';
 import filters from './common/filters';
 
 const app = createApp(App);

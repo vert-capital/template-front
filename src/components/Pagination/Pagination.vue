@@ -6,7 +6,7 @@
   ></v-pagination>
 </template>
 <script lang="ts">
-import { VPagination } from '@vert-frame-core/design-system';
+import { VPagination } from '@vert-capital/design-system';
 import { defineComponent } from 'vue';
 
 export default defineComponent({

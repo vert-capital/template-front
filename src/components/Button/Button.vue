@@ -4,7 +4,7 @@
   </v-button>
 </template>
 <script lang="ts">
-import { VButton } from '@vert-frame-core/design-system';
+import { VButton } from '@vert-capital/design-system';
 import { defineComponent } from 'vue';
 import { Loading } from '@element-plus/icons-vue';
 
