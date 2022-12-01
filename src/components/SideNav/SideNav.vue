@@ -9,11 +9,19 @@
       </div>
 
       <el-menu class="el-menu-vertical v-sidenav--items" :router="true" :collapse="isCollapse">
-        <el-menu-item index="/">
+        <el-menu-item index="/" :route="{ name: 'Home', params: {} }">
           <el-icon>
             <SvgIcon type="mdi" :path="mdiHome" :size="15"></SvgIcon>
           </el-icon>
-          <template #title> Home </template>
+          <span v-if="isCollapse"></span>
+          <span v-else>Home</span>
+        </el-menu-item>
+        <el-menu-item index="/page-example" :route="{ name: 'PageExample', params: {} }">
+          <el-icon>
+            <SvgIcon type="mdi" :path="mdiFormatListBulleted" :size="15"></SvgIcon>
+          </el-icon>
+          <span v-if="isCollapse"></span>
+          <span v-else>Page example</span>
         </el-menu-item>
       </el-menu>
     </el-scrollbar>

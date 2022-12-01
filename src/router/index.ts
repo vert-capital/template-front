@@ -17,6 +17,17 @@ const router = createRouter({
       ]
     },
     {
+      path: '/page-example',
+      component: () => import('../pages/Base/BasePage.vue'),
+      children: [
+        {
+          path: '',
+          name: 'PageExample',
+          component: () => import('../pages/PageExample/PageExample.vue')
+        }
+      ]
+    },
+    {
       path: '/auth/:token/:refreshToken/',
       name: 'auth',
       component: () => import('../pages/Auth/Auth.vue')
