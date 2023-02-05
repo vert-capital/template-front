@@ -28,7 +28,7 @@
       </el-col>
     </el-row>
     <div class="v-filter--btns">
-      <vds-button style_type="shadow" @click="resetForm(formRef)"> Limpar filtros </vds-button>
+      <vds-button style-type="shadow" @click="resetForm(formRef)"> Limpar filtros </vds-button>
       <vds-button @click="$emit('apply-filters')"> Aplicar filtros </vds-button>
     </div>
   </el-form>

@@ -4,6 +4,12 @@ import { getUserInfo, validToken, logoutApplication, getApplications } from './s
 
 export default {
   async login({ commit }: ActionContext<any, any>) {
+    if (import.meta.env.VITE_USE_JWT == 'false') {
+      return Promise.resolve().then(() => {
+        commit('setIsLogged', true);
+        router.push('/');
+      });
+    }
     return await validToken(String(localStorage.getItem('token')))
       .then((response) => {
         if (response.status == 'success') {

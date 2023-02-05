@@ -1,4 +1,4 @@
-import { defineComponent, reactive, ref } from 'vue';
+import { defineComponent, onMounted, reactive, ref } from 'vue';
 import VdsButton from '@/components/Button/Button.vue';
 import { mdiPlus } from '@mdi/js';
 import VdsPagination from '@/components/Pagination/Pagination.vue';
@@ -6,6 +6,7 @@ import VContent from '@/components/Content/VContent.vue';
 import { Search } from '@element-plus/icons-vue';
 import { useStore } from 'vuex';
 import VFormFilter from '@/pages/Home/form/VFormFilter.vue';
+import { Time } from '@vert-capital/design-system';
 
 export default defineComponent({
   components: {
@@ -18,10 +19,7 @@ export default defineComponent({
     const store = useStore();
     const pagination = ref({ page: 1, page_size: 5 });
     const isOpenModalAdd = ref(false);
-    const tableData = ref([
-      { id: 1, name: 'name 1' },
-      { id: 2, name: 'name 2' }
-    ]);
+    const tableData = computed(() => store.state.example.collection);
     const isLoading = ref(false);
     const paginationCount = ref(1);
 
@@ -60,6 +58,8 @@ export default defineComponent({
       });
     };
 
+    const time = new Time();
+    console.log(time);
     return {
       pagination,
       mdiPlus,

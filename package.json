@@ -1,8 +1,8 @@
 {
   "name": "@vert-capital/template-front",
-  "version": "v1.0.0",
+  "version": "2",
   "scripts": {
-    "dev": "vite --mode development --port 80 --host 0.0.0.0",
+    "dev": "vite --mode development",
     "dev-st": "vite --mode staging --port 80",
     "build:ci": "vite build --mode ci",
     "build:stg": "vite build --mode staging",
@@ -17,7 +17,7 @@
   "dependencies": {
     "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/js": "^6.9.96",
-    "@vert-capital/design-system": "^0.4.0",
+    "@vert-capital/design-system": "^0.9.0",
     "axios": "^0.27.2",
     "date-fns": "^2.29.1",
     "element-plus": "^2.2.9",

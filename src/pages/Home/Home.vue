@@ -23,6 +23,11 @@
           >
             <el-table-column prop="id" label="ID" width="60"></el-table-column>
             <el-table-column prop="name" label="Nome" width="200" sortable></el-table-column>
+            <el-table-colum>
+              <template #default="scope">
+                <span>Opções</span>
+              </template>
+            </el-table-colum>
           </el-table>
         </el-col>
       </el-row>
