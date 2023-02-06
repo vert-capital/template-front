@@ -1,6 +1,7 @@
 {
   "name": "@vert-capital/template-front",
   "version": "2",
+  "license": "MIT",
   "scripts": {
     "dev": "vite --mode development",
     "dev-st": "vite --mode staging --port 80",

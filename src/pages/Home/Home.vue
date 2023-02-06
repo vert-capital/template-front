@@ -17,17 +17,18 @@
         <el-col :span="24">
           <el-table
             v-loading="isLoading"
-            :data="tableData"
+            :data="tableData.collection"
             style="width: 100%"
             @sort-change="handleSortChange"
           >
             <el-table-column prop="id" label="ID" width="60"></el-table-column>
             <el-table-column prop="name" label="Nome" width="200" sortable></el-table-column>
-            <el-table-colum>
-              <template #default="scope">
-                <span>Opções</span>
-              </template>
-            </el-table-colum>
+            <el-table-column
+              prop="initial_data_formatted"
+              label="Data"
+              width="200"
+              sortable
+            ></el-table-column>
           </el-table>
         </el-col>
       </el-row>

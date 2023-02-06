@@ -15,6 +15,13 @@ export class ExampleDataCollection {
     return this.collection.find((item: ExampleDataModel) => item.name === name);
   }
 
+  getCollectionOrderByParam(param: string): ExampleDataModel[] {
+    if (!param) return this.collection;
+    return this.collection.sort((a: ExampleDataModel, b: ExampleDataModel) =>
+      a[param].localeCompare(b[param])
+    );
+  }
+
   getCollectionOrderedByName(): ExampleDataModel[] {
     return this.collection.sort((a: ExampleDataModel, b: ExampleDataModel) =>
       a.name.localeCompare(b.name)

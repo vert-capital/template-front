@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, reactive, ref } from 'vue';
+import { defineComponent, computed, reactive, ref, onMounted } from 'vue';
 import VdsButton from '@/components/Button/Button.vue';
 import { mdiPlus } from '@mdi/js';
 import VdsPagination from '@/components/Pagination/Pagination.vue';
@@ -6,7 +6,6 @@ import VContent from '@/components/Content/VContent.vue';
 import { Search } from '@element-plus/icons-vue';
 import { useStore } from 'vuex';
 import VFormFilter from '@/pages/Home/form/VFormFilter.vue';
-import { Time } from '@vert-capital/design-system';
 
 export default defineComponent({
   components: {
@@ -19,7 +18,7 @@ export default defineComponent({
     const store = useStore();
     const pagination = ref({ page: 1, page_size: 5 });
     const isOpenModalAdd = ref(false);
-    const tableData = computed(() => store.state.example.collection);
+    const tableData = computed(() => store.getters['example/getCollection']);
     const isLoading = ref(false);
     const paginationCount = ref(1);
 
@@ -31,17 +30,17 @@ export default defineComponent({
       isOpenModalAdd.value = !isOpenModalAdd.value;
     }
 
-    const fetchDomain = (params): Promise<void> =>
-      store.dispatch('example/fetchDomain', { ...params, ...formDataFilters });
+    const fetchData = (params): Promise<void> =>
+      store.dispatch('example/fetchData', { ...params, ...formDataFilters });
 
     const onChangePagination = async (data: any) => {
       pagination.value.page = data.page;
       pagination.value.page_size = data.page_size;
-      await fetchDomain(pagination.value);
+      await fetchData(pagination.value);
     };
 
     const handleApplyFilters = async () => {
-      await store.dispatch('example/fetchDomain', {
+      await store.dispatch('example/fetchData', {
         page: pagination.value.page,
         page_size: pagination.value.page_size,
         ...formDataFilters,
@@ -51,15 +50,26 @@ export default defineComponent({
 
     const handleSortChange = ({ column, prop, order }) => {
       activeSort.value = order == 'descending' ? '-' + prop : prop;
-      fetchDomain({
+      //method by api request
+      /* fetchData({
         page: pagination.value.page,
         page_size: pagination.value.page_size,
         ordering: activeSort.value
       });
+      */
+      //method by collection - ordering in memory
+      /*
+        const orderMemory = tableData.value.getCollectionOrderByParam(prop);
+        store.commit('example/setCollection', orderMemory);
+     */
+
+      //por padrão o element já faz uma ordenação em memória
     };
 
-    const time = new Time();
-    console.log(time);
+    onMounted(async () => {
+      await fetchData(pagination.value);
+    });
+
     return {
       pagination,
       mdiPlus,

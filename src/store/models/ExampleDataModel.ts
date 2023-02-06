@@ -9,9 +9,13 @@ export class ExampleDataModel implements IData {
 
   time = new Time();
 
+  get initial_data_at_date(): Date {
+    const date = this.time.getDateFromDateString(this.initial_data);
+    return date;
+  }
+
   get initial_data_formatted(): string {
-    const { date, month, year } = this.time.getAllVariablesFromDatetring(this.initial_data);
-    return date + '/' + month + '/' + year;
+    return this.time.getDateLocaleFromDateString(this.initial_data);
   }
 
   constructor(data: IData = {} as IData) {
